@@ -85,19 +85,22 @@ mkdir src
 touch ./src/index.ts
 ```
 
-In `tsconfig.json`, update the following `"compilerOptions"`. This configures TypeScript to use your source files, and generate all of the necessary declaration and map files.
+In `tsconfig.json`, update the following `"compilerOptions"`. This configures TypeScript to use your source files, and generate all of the necessary declaration and map files. It also enabled ES Modules.
 
 ```bash
+  "module": "ESNext",
   "rootDir": "./src",
+  "moduleResolution": "node",
   "declaration": true,
   "declarationMap": true,
   "sourceMap": true,
   "outDir": "./dist",
 ```
 
-In `package.json`, create the following properties. This configures your package to use the TypeScript generated files.
+In `package.json`, create the following properties. This configures your package to use the TypeScript generated files. It also enabled ES Modules.
 
 ```bash
+  "type": "module",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
 ```
@@ -111,8 +114,8 @@ In `package.json`, create the following `"scripts"`. These are common scripts fo
     "test": "jest",
     "start": "tsc --watch",
     "build": "tsc",
-    "clean": "tsc --build --clean"
-    "prepublishOnly": "tsc --build --clean && tsc",
+    "clean": "tsc --build --clean",
+    "prepublishOnly": "tsc --build --clean && tsc"
   }
 ```
 
